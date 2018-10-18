@@ -1,0 +1,33 @@
+
+{% extends "base.html" %}
+{% block content %}
+    <h1>Travel</h1>
+
+    <form method="Post" action="/home/contact/">{% csrf_token%}
+    	<input type="text" name="title" placeholder="title">
+    	<input type="text" name="Description" placeholder="Description">
+    	<input type="submit" value="Post">
+    	
+    </form>
+
+    <div class="container">
+		
+		<div class="row">
+		  <div class="leftcolumn">
+		  {% for p in post %}
+
+			    <div class="card">
+			    
+		    		<h2>{{p.title}}</h2>
+		    		<h5> Category: {{p.category}}</h5>
+		    		<p>{{p.description}}</p>
+
+			    </div>
+		    {% endfor %}
+		    
+		  </div>
+	 	</div>
+	 </div>
+{% endblock %}
+
+

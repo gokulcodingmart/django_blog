@@ -1,0 +1,43 @@
+body{
+	background-color: #F5F5F5;
+}
+
+.card {
+     background-color: white;
+     padding: 20px;
+     margin-top: 20px;
+     margin-left: 200px;
+     margin-right: 215px;
+}
+.card1 {
+     background-color: white;
+     padding: 20px;
+     margin-top: 20px;
+     margin-left: 212px;
+     margin-right: 200px;
+}
+
+.posttitle{
+	width: 700px;
+	height: 40px;
+	margin: 5px;
+
+}
+.des{
+	width: 700px;
+	height: 200px;
+	margin: 5px;
+
+}
+.category{
+	width: 700px;
+	height: 40px;
+	margin: 5px;
+
+}
+.bt{
+	width: 100px;
+	height: 35px;
+	margin-left: 5px;
+}
+
