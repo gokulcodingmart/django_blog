@@ -26,32 +26,53 @@ def index(request):
 	return render(request, 'home/index.html', {'post':post})
 
 def about(request):
+	if request.method == "POST":
+		if request.POST.get('title'):
+			title  = request.POST.get('title')
+			description  = request.POST.get('description')
+			
+			Post.objects.create(title=title, description=description, category="finance")
 	post = Post.objects.filter(category="finance").order_by('-id')
 	return render(request, 'home/finance.html', {'post':post})
 
-	
+
 def contact(request):
 	# form = PostForm(request.POST or None)
 	# if form.is_valid():
 	# 	form.save()
 	# 	form = PostForm()
-    if request.method == "POST":
-    	title  = request.POST.get('title')
-    	description  = request.POST.get('Description')
-    	Post.objects.create(title=title, description=description)
-    	
-    post = Post.objects.filter(category="travel").order_by('-id')
-    return render(request, 'home/travel.html', {'post':post})
+    # if request.method == "POST":
+    # 	title  = request.POST.get('title')
+    # 	description  = request.POST.get('Description')
+    # 	Post.objects.create(title=title, description=description)
+	if request.method == "POST":
+		if request.POST.get('title'):
+			title  = request.POST.get('title')
+			description  = request.POST.get('description')
+			
+			Post.objects.create(title=title, description=description, category="travel")
+	
+	post = Post.objects.filter(category="travel").order_by('-id')
+	return render(request, 'home/travel.html', {'post':post})
 
 def education(request):
 	if request.method == "POST":
-		title  = request.POST.get('postid')
-		print(title)
+		if request.POST.get('title'):
+			title  = request.POST.get('title')
+			description  = request.POST.get('description')
+			
+			Post.objects.create(title=title, description=description, category="education")
 	post = Post.objects.filter(category="education").order_by('-id')
 	return render(request, 'home/education.html', {'post':post})
 
 
 def business(request):
+	if request.method == "POST":
+		if request.POST.get('title'):
+			title  = request.POST.get('title')
+			description  = request.POST.get('description')
+			
+			Post.objects.create(title=title, description=description, category="business")
 
 	post = Post.objects.filter(category="business").order_by('-id')
 	return render(request, 'home/business.html', {'post':post})
