@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Post, Comment, Like
 from django.contrib.auth.models import User
 
@@ -78,12 +78,17 @@ def business(request):
 	return render(request, 'home/business.html', {'post':post})
 
 
-def comment(request):
-	if request.method == "POST":
-		post  = request.POST.get('post')
-		description  = request.POST.get('description')
-		postobject = Post.objects.get(id=post)		
-		Comment.objects.create(post=postobject, description=description)
+def comment(request, id):
+
+	#post = Post.objects.get(id=id)
+	post = get_object_or_404(Post, id=id)
+
+
+	# if request.method == "POST":
+	# 	post  = request.POST.get('post')
+	# 	description  = request.POST.get('description')
+	# 	postobject = Post.objects.get(id=post)		
+	# 	Comment.objects.create(post=postobject, description=description)
 	
-	return render(request, 'home/comment.html')
+	return render(request, 'home/comment.html', {'p':post})
 
