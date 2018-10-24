@@ -1,5 +1,5 @@
 <!-- login.html -->
-{% extends "base.html" %}
+{% extends "base1.html" %}
 {% block title %}Login{% endblock %}
 {% block head %}Login{% endblock %}
 {% block content %}
@@ -23,7 +23,7 @@
         <input type="password" placeholder="Password" name="password">
         <button type="submit"  value="Login" id="login-button">Login</button>
         <button type="button" onclick="window.location.href='register/' ">Register</button>
-        <input type="hidden" name="next" value="/machine/" />
+        <input type="hidden" name="next" value="/" />
     </form>
 
 {% endblock %}

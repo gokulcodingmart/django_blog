@@ -21,7 +21,7 @@ def register(request):
             password=form.cleaned_data['password1'],
             email=form.cleaned_data['email']
             )
-            return HttpResponseRedirect('/register/success/')
+            return HttpResponseRedirect('/')
     else:
         forms = RegistrationForm()
         
@@ -34,16 +34,16 @@ def register(request):
  
 def register_success(request):
     return render_to_response(
-    'registration/success.html',
+    '/',
     )
  
 def logout_page(request):
     logout(request)
-    return HttpResponseRedirect('/machine/indexs.html')
+    return HttpResponseRedirect('/')
  
 @login_required
 def home(request):
     return render_to_response(
-    'machine/index.html',
+    '/',
     { 'user': request.user }
     )

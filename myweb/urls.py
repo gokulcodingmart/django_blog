@@ -17,12 +17,18 @@ from django.contrib import admin
 from django.urls import path
 from home.views import index
 from django.conf.urls import include, url
+from signup.views import *
+from django.contrib.auth import views as auth_views
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #url(r'^$', auth_views.LoginView, name='login'),
     url(r'^$', index),
-    path('accounts/', include('django.contrib.auth.urls')),
+    #path('accounts/', include('django.contrib.auth.urls')),
     url(r'^home/', include('home.urls')),
-    url(r'^sessions/', include('sessions.urls')),
+    url(r'^signup/', include('signup.urls')),
+    url(r'^logout/$', logout_page),
+    url(r'^register/success/$', register_success),
 ]

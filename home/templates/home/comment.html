@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% if request.user.id %}
      <div class="container">
 	<h1>Comment</h1>
 	<br>
@@ -15,7 +16,9 @@
 	    </form>
 	    <br>
 	</div>
-
+{% else %}
+	<h3>Please login to comment.</h3>
+{% endif %}
 
 	<br><br>
 
