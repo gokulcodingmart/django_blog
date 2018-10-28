@@ -1,0 +1,120 @@
+
+{% extends "base.html" %}
+{% block content %}
+	<div class="container">
+	  <div class="jumbotron ">
+	    <h1 align="center">My Profile</h1>
+	    <p align="center">Person who is eagerly waiting to solve societies pain point using Technology.</p>
+	    <p align="center"> I trust that most of the problems in this society can be solved using the Technology.</p>
+	  </div>
+	 
+	</div>
+	<div class="container">
+	
+
+ 	{% if request.user.id %}
+		<div class="container">
+			
+			<div class="row">
+			  <div class="leftcolumn">
+			
+
+				    <div class="card">
+				    <h3>Post</h3>
+				    
+			    		<form method="Post" action="/home/index/">{% csrf_token%}
+					    	<input type="text" name="title" placeholder="title" class="posttitle"><br>
+					    	<textarea name="description" placeholder="Description" class="des"></textarea><br>
+					    	<input type="text" name="category" placeholder="Category" class="category"><br>
+					    	<input type="submit" value="Post" class="bt">
+					    	
+					    </form>
+
+				    </div>
+			   
+			    
+			  </div>
+		 	</div>
+		 </div>
+	{% endif %}
+	<br>
+	<br>
+	<br>
+	<br>
+<!--
+		
+		<form method="Post" action="/home/index/">{% csrf_token%}
+	    	<input type="text" name="title" placeholder="title">
+	    	<input type="text" name="Description" placeholder="Description">
+	    	<input type="text" name="category" placeholder="Category">
+	    	<input type="submit" value="Post">
+	    	
+	    </form>
+	    <br>
+	    -->
+	</div>
+	<div class="container">
+		
+		<div class="row">
+		  <div class="leftcolumn">
+		  {% for p in post %}
+
+			    <div class="card1">
+			    
+		    		<h2>{{p.title}}</h2>
+		    		<h5> Category: {{p.category}}</h5>
+		    		<p>{{p.description}}</p>
+		    		
+					{%csrf_token%}
+					<input type="hidden" name="postid" value="{{p.id}}" class= "postid{{p.id}}" >
+					<input type="button" value="Like" class="likebutton{{p.id}}">
+		    		
+		    		<a href="/home/comment/{{p.id}}/"> <button class="btn btn-primary">Comment</button>  </a>
+		    		<a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/home/comment/{{p.id}}">
+					Share
+					</a>
+		    		
+			    </div>
+		    {% endfor %}
+		    
+		  </div>
+	 	</div>
+	 </div>
+	 <input type="button" value="Like" id="like">
+	 <!--
+    <div class="container">
+	<h1>Comment</h1>
+	<br>
+
+		
+		<form method="Post" action="/home/index/">{% csrf_token%}
+	    	<input type="number" name="post" placeholder="Post_id">
+	    	
+	    	<textarea name="description" placeholder="Description"></textarea>
+	    	
+	    	<input type="submit" value="Post">
+	    	
+	    </form>
+	    <br>
+	</div>
+    
+    -->
+    
+{% endblock %}
+
+{% block javascript %}
+
+	 <script> 
+	 	$(document).ready(function(){						 
+			$(".likebutton").click(function(){								
+				var postid =  $(".postid").val();
+				alert(postid);				
+				$.post('/home/like/', { postid:postid });
+				
+			});
+			
+		});
+	 </script>
+
+{% endblock %}
+

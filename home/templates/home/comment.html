@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+		
+		<div class="row">
+		  <div class="leftcolumn">
+		  
+
+			    <div class="card">
+			    
+		    		<h2>{{p.title}}</h2>
+		    		<h5> Category: {{p.category}}</h5>
+		    		<p>{{p.description}}</p>
+		    		<form method="Post" action="/home/index/">{% csrf_token%}
+		    			<input type="hidden" name="postid" value="{{p.id}}">
+
+		    			<input type="submit" name="Like" value="Like">
+					</form>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/home/comment/{{p.id}}">
+						Share
+						</a>
+
+			    </div>
+		    
+		    
+		  </div>
+	 	</div>
+	 </div>
+{% if request.user.id %}
+     <div class="container">
+		
+		<div class="row">
+		  <div class="leftcolumn">
+		  
+
+			    <div class="card">
+			    
+		    		<h1>Comment</h1>
+					<br>
+
+					<!-- <form method="Post" action="/home/comment/">{% csrf_token%}
+						<input type="number" name="post" placeholder="Post_id">
+						
+						<textarea name="description" placeholder="Description"></textarea>
+						
+						<input type="submit" value="Post">
+						
+					</form> -->
+						{%csrf_token%}
+					    	
+					    	<input type="hidden" name="post" value="{{p.id}}" id="postid">
+					    	
+					    	<textarea name="description" placeholder="Description" class="des"></textarea>
+					    	
+					    	<input type="button" value="Post" id="commentbutton">
+					    	
+					   
+					    <br>
+
+			    </div>
+		    
+		    
+		  </div>
+	 	</div>
+	 </div>
+
+{% else %}
+	<h3>Please login to comment.</h3>
+{% endif %}
+
+	<br><br>
+
+	<div class="container">
+		
+		<div class="row">
+		  <div class="leftcolumn">
+		  	{% for c in comment %}
+		  		{% if c.post.id == p.id %}
+
+				    <div class="card">
+				    
+			    		<h2>{{c.description}}</h2>
+			    		
+				    </div>
+			    {% endif %}
+		    {% endfor %}
+		    
+		  </div>
+	 	</div>
+	 </div>
+
+	
+	 
+{% endblock %}
+
+
+{% block javascript %}
+
+	 <script> 
+	 	$(document).ready(function(){
+			 
+			$("#commentbutton").click(function(){
+				
+				var post =  $("#postid").val();
+				var description = $(".des").val();
+				// $.ajax({
+				// 	url: '/home/ajaxcomment/,
+				// 	type : "post",
+				// 	data: {
+				// 	post: post
+				// 	description : description
+				// 	},
+				// 	dataType: 'json',
+				// 	success: function (data) {
+				// 		alert("commented");
+				// 		}
+					
+				// });
+				$.post('/home/ajaxcomment/', { post:post, description:description });
+				
+			});
+		});
+	 </script>
+
+{% endblock %}
+
