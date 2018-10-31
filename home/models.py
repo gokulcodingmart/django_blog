@@ -10,6 +10,7 @@ class Post(models.Model):
 class Comment(models.Model):
 	post = models.ForeignKey(Post, on_delete=models.CASCADE)
 	description = models.TextField()
+	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 	
 class Like(models.Model):
 	post = models.ForeignKey(Post, on_delete=models.CASCADE)

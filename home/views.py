@@ -88,10 +88,11 @@ def comment(request, id):
 
 	if request.method == "POST":
 		post  = request.POST.get('post')
-		print("it is post call")
+		currentuser = request.user
+		
 		description  = request.POST.get('description')
 		postobject = Post.objects.get(id=post)		
-		Comment.objects.create(post=postobject, description=description)
+		Comment.objects.create(post=postobject, description=description, user=currentuser)
 	post = get_object_or_404(Post, id=id)
 	comment = Comment.objects.all()
 	
@@ -103,8 +104,9 @@ def ajaxcomment(request):
 	
 	post  = request.POST.get('post')
 	description  = request.POST.get('description')
+	currentuser = request.user
 	postobject = Post.objects.get(id=post)		
-	Comment.objects.create(post=postobject, description=description)
+	Comment.objects.create(post=postobject, description=description, user=currentuser)
 	data['message'] = "commented"
 	return JsonResponse(data)
 
