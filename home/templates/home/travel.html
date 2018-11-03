@@ -1,13 +1,34 @@
 
 {% extends "base.html" %}
+<<<<<<< HEAD
 {% block content %}
     <h1>Travel</h1>
 
     <form method="Post" action="/home/contact/">{% csrf_token%}
+=======
+
+
+{% block banner %} 
+	
+    <div class="jumbotron text-center  ban">
+			<br>
+			<br>
+      <h1 id="head">Travel</h1>
+      
+    </div>
+
+
+{% endblock %}
+{% block content %}
+    
+
+    <!--<form method="Post" action="/home/contact/">{% csrf_token%}
+>>>>>>> e8dce541aee21b7aefd0822e6ffb52df91687cb0
     	<input type="text" name="title" placeholder="title">
     	<input type="text" name="Description" placeholder="Description">
     	<input type="submit" value="Post">
     	
+<<<<<<< HEAD
     </form>
     <div class="container">
 		
@@ -31,6 +52,33 @@
 		  </div>
 	 	</div>
 	 </div>
+=======
+    </form>-->
+    {% if request.user.id %}
+	    <div class="container">
+			
+			<div class="row">
+			  <div class="leftcolumn">
+			
+
+				    <div class="card">
+				    <h3>Post</h3>
+				    
+			    		<form method="Post" action="/home/travel/">{% csrf_token%}
+					    	<input type="text" name="title" placeholder="title" class="posttitle"><br>
+					    	<textarea name="description" placeholder="Description" class="des"></textarea><br>
+					    	<input type="submit" value="Post" class="bt">
+					    	
+					    </form>
+
+				    </div>
+			   
+			    
+			  </div>
+		 	</div>
+		 </div>
+	{% endif %}
+>>>>>>> e8dce541aee21b7aefd0822e6ffb52df91687cb0
 
     <div class="container">
 		
@@ -48,6 +96,10 @@
 
 		    			<input type="submit" name="Like" value="Like">
 		    		</form>
+<<<<<<< HEAD
+=======
+		    		<a href="/home/comment/{{p.id}}/"> <button class="btn btn-primary">Comment</button>  </a>
+>>>>>>> e8dce541aee21b7aefd0822e6ffb52df91687cb0
 		    		<a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/home/comment/{{p.id}}">
 					Share
 					</a>

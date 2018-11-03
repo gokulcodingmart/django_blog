@@ -1,19 +1,37 @@
 
 {% extends "base.html" %}
 {% block content %}
+<<<<<<< HEAD
 	<div class="container">
+=======
+	<!-- <div class="container">
+>>>>>>> e8dce541aee21b7aefd0822e6ffb52df91687cb0
 	  <div class="jumbotron ">
 	    <h1 align="center">My Profile</h1>
 	    <p align="center">Person who is eagerly waiting to solve societies pain point using Technology.</p>
 	    <p align="center"> I trust that most of the problems in this society can be solved using the Technology.</p>
 	  </div>
 	 
+<<<<<<< HEAD
 	</div>
 	<div class="container">
 	<h1>Post</h1>
 	<br>
 	<br>
 	<br>
+=======
+	</div> -->
+	<div class="jumbotron text-center  ban">
+			<br>
+			
+	  <h1 id="head">My Blog</h1>
+	  <p id="head" align="center">Person who is eagerly waiting to solve societies pain point using Technology.</p>
+	  <p id="head" align="center"> I trust that most of the problems in this society can be solved using the Technology.</p>
+      
+    </div>
+	<div class="container">
+	
+>>>>>>> e8dce541aee21b7aefd0822e6ffb52df91687cb0
 
  	{% if request.user.id %}
 		<div class="container">
@@ -68,12 +86,19 @@
 		    		<h5> Category: {{p.category}}</h5>
 		    		<p>{{p.description}}</p>
 		    		
+<<<<<<< HEAD
 		    		<form method="Post" action="/home/index/">{% csrf_token%}
 		    			<input type="hidden" name="postid" value="{{p.id}}">
 
 		    			<input type="submit" name="Like" value="Like">
 		    		</form>
 
+=======
+					{%csrf_token%}
+					<input type="hidden" name="postid" value="{{p.id}}" class= "postid{{p.id}}" >
+					<input type="button" value="Like" class="likebutton{{p.id}}">
+		    		
+>>>>>>> e8dce541aee21b7aefd0822e6ffb52df91687cb0
 		    		<a href="/home/comment/{{p.id}}/"> <button class="btn btn-primary">Comment</button>  </a>
 		    		<a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/home/comment/{{p.id}}">
 					Share
@@ -85,7 +110,11 @@
 		  </div>
 	 	</div>
 	 </div>
+<<<<<<< HEAD
 
+=======
+	 <input type="button" value="Like" id="like">
+>>>>>>> e8dce541aee21b7aefd0822e6ffb52df91687cb0
 	 <!--
     <div class="container">
 	<h1>Comment</h1>
@@ -106,3 +135,23 @@
     -->
     
 {% endblock %}
+<<<<<<< HEAD
+=======
+
+{% block javascript %}
+
+	 <script> 
+	 	$(document).ready(function(){						 
+			$(".likebutton").click(function(){								
+				var postid =  $(".postid").val();
+				alert(postid);				
+				$.post('/home/like/', { postid:postid });
+				
+			});
+			
+		});
+	 </script>
+
+{% endblock %}
+
+>>>>>>> e8dce541aee21b7aefd0822e6ffb52df91687cb0

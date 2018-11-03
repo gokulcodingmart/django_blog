@@ -10,6 +10,10 @@ class Post(models.Model):
 class Comment(models.Model):
 	post = models.ForeignKey(Post, on_delete=models.CASCADE)
 	description = models.TextField()
+<<<<<<< HEAD
+=======
+	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+>>>>>>> e8dce541aee21b7aefd0822e6ffb52df91687cb0
 	
 class Like(models.Model):
 	post = models.ForeignKey(Post, on_delete=models.CASCADE)
